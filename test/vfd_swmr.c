@@ -506,6 +506,7 @@ test_file_end_tick()
     my_config->vfd_swmr_writer = TRUE;
     my_config->md_pages_reserved = 2;
     HDstrcpy(my_config->md_file_path, "my_md_file");
+    HDstrcpy(my_config->log_file_path, "output.log");
 
     /* Should succeed in setting the VFD SWMR configuration */
     if(H5Pset_vfd_swmr_config(fapl, my_config) < 0)
@@ -625,6 +626,28 @@ error:
  *
  *-------------------------------------------------------------------------
  */
+FILE *g_log_file = NULL;
+
+static void file_output_callback(const zf_log_message *msg, void *arg)
+{
+
+  
+  if (g_log_file == NULL) {
+      g_log_file = fopen("output.log", "a");
+  }
+
+  if (!g_log_file)
+    {
+      ZF_LOGW("Failed to open log file %s", "output.log");
+    }
+
+  (void)arg;
+  *msg->p = '\n';
+  fwrite(msg->buf, msg->p - msg->buf + 1, 1, g_log_file);
+  fflush(g_log_file);
+
+}
+
 int
 main(void)
 {
@@ -633,6 +656,7 @@ main(void)
     const char  *env_h5_drvr = NULL;    /* File Driver value from environment */
     hbool_t     api_ctx_pushed = FALSE;             /* Whether API context pushed */
 
+    zf_log_set_output_v(ZF_LOG_PUT_STD, 0, file_output_callback);
     ZF_LOGI("calling h5_reset()");
     h5_reset();
 
@@ -680,6 +704,7 @@ main(void)
     HDexit(EXIT_SUCCESS);
 
 error:
+    fclose(g_log_file);
     HDprintf("***** %d VFD SWMR TEST%s FAILED! *****\n",
         nerrors, nerrors > 1 ? "S" : "");
 

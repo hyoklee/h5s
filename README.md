@@ -5,6 +5,10 @@
 
   Please contact admin@akadio.com if you'd like to buy and try it.
 
+** Patch for g++-8 on Mac
+
+  See src/ for affected files.
+  
 
 
   
