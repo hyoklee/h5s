@@ -1,11 +1,17 @@
 import apache_beam as beam
-
+import json
 
 
 outputs_prefix = 'outputs/part'
 
 def transform_doc(document):
-  return {'summary': str(document['summary'][0]['MeanTime'])}
+  out = {}
+  dt = str(document['Began'])
+  # Cut first 4 characters.
+  v_dt = dt[4:]
+  out['ts'] = v_dt
+  out['value'] = document['summary'][0]['MeanTime']
+  return out
 
 # Running locally in the DirectRunner.
 with beam.Pipeline() as pipeline:
