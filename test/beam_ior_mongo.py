@@ -11,7 +11,7 @@ def transform_doc(document):
   v_dt = dt[4:]
   out['ts'] = v_dt
   out['value'] = document['summary'][0]['MeanTime']
-  return out
+  return json.dumps(out)
 
 # Running locally in the DirectRunner.
 with beam.Pipeline() as pipeline:
