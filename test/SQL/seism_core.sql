@@ -1,0 +1,1 @@
+SELECT starttime AS time, SUBSTRING(build.name, 20, 30) AS metric, build2test.time AS perf FROM build2test JOIN build ON (build2test.buildid = build.id) JOIN test ON (test.id = build2test.testid) WHERE test.name='seism-core-slice';
