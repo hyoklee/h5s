@@ -1,3 +1,3 @@
-{"Mi": 229.8322; "msecs": 145.2648; "Mi/sec": 1582.1824; "procs": 16; "args": "--parallel_file_mode MIF 4 --plugin_args --show_errors"; "now": "Mon Apr  6 13:02:33 2020"}
-{"Mi": 229.8322; "msecs": 654.4417; "Mi/sec": 351.1881; "procs": 16; "args": "--parallel_file_mode SIF 1 --plugin_args --no_collective --show_errors"; "now": "Mon Apr  6 13:02:34 2020"}
-{"Mi": 229.8322; "msecs": 394.7814; "Mi/sec": 582.1758; "procs": 16; "args": "--parallel_file_mode SIF 1 --plugin_args --show_errors"; "now": "Mon Apr  6 13:02:34 2020"}
+{"host":"jelly", "Mi": 229.8322, "msecs": 145.2648, "Mi/sec": 1582.1824, "procs": 16, "args": "--parallel_file_mode MIF 4 --plugin_args --show_errors", "now": "Mon Apr  6 13:02:33 2020"}
+{"host":"jelly", "Mi": 229.8322, "msecs": 654.4417, "Mi/sec": 351.1881, "procs": 16, "args": "--parallel_file_mode SIF 1 --plugin_args --no_collective --show_errors", "now": "Mon Apr  6 13:02:34 2020"}
+{"host":"jelly", "Mi": 229.8322, "msecs": 394.7814, "Mi/sec": 582.1758, "procs": 16, "args": "--parallel_file_mode SIF 1 --plugin_args --show_errors", "now": "Mon Apr  6 13:02:34 2020"}
