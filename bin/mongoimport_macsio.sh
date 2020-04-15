@@ -8,11 +8,12 @@ mongo --eval "db.macsioinputs.drop()" macsio
 # List all items in the output table.
 # mongo --eval "db.macsiooutputs.find()" macsio
 # Drop output table.
-# mongo --eval "db.macsiooutputs.drop() macsio"
+mongo --eval "db.macsiooutputs.drop()" macsio
 
 
 # Go over IOR json files and import them to MongoDB.
-for file in ../data/macsio/*.json
+#for file in ../data/macsio/*.json
+for file in ../data/macsio/*
 do
   echo $file
   mongoimport -d macsio -c macsioinputs $file

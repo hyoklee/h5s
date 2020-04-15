@@ -2,8 +2,6 @@ import apache_beam as beam
 import json
 import datetime
 
-outputs_prefix = 'outputs/part'
-
 def transform_doc(document):
   out = {}
 
@@ -28,6 +26,9 @@ def transform_doc(document):
   # Handle args
   out['args'] = document['args']
 
+  # Handle hostname
+  out['hostname'] = document['hostname']
+
   return out
   # For text output.
   # return json.dumps(out) 
@@ -46,6 +47,5 @@ with beam.Pipeline() as pipeline:
         db='macsio',
         coll='macsiooutputs',
         batch_size=10)
-      # | 'Write results' >> beam.io.WriteToText(outputs_prefix)
   )
 
