@@ -32,7 +32,7 @@
 
 /* size of buffer/# of bytes to xfer at a time when copying userblock */
 #define USERBLOCK_XFER_SIZE     512
-
+#define LINK_BUF_SIZE   1024
 /*-------------------------------------------------------------------------
  * local functions
  *-------------------------------------------------------------------------
@@ -1229,8 +1229,12 @@ do_copy_objects(hid_t fidin, hid_t fidout, trav_table_t *travt,
                     HDprintf(FORMAT_OBJ, "link", travt->objs[i].name);
 		/* Check X option */
 		printf("Check X option here.\n");
+		/* Read linked data. */
+		H5Lmerge(fidin, travt->objs[i].name, fidout, travt->objs[i].name, H5P_DEFAULT, H5P_DEFAULT);
+		/*
                 if (H5Lcopy(fidin, travt->objs[i].name, fidout, travt->objs[i].name, H5P_DEFAULT, H5P_DEFAULT) < 0)
                     H5TOOLS_GOTO_ERROR((-1), "H5Lcopy failed");
+		*/
                 break;
 
             default:
@@ -1529,3 +1533,81 @@ done:
 } /* end print_user_block() */
 #endif
 
+void
+H5Lmerge(hid_t fidin, const char *src_name, hid_t fidout,
+	 const char *dst_name)
+{
+  int64_t data_out[10][10];  
+  H5L_info2_t linfo;  
+  char linkval[LINK_BUF_SIZE];
+  // char       *targbuf;  
+  const char *filename;
+  const char *targname;
+
+	
+  if(H5Lget_info2(fidin, src_name, &linfo, H5P_DEFAULT) < 0)
+    HDprintf("    %d:H5Lget_info2( \n", __LINE__);
+
+  if(H5L_TYPE_EXTERNAL != linfo.type) {  
+    //  if(H5L_TYPE_SOFT != linfo.type) {
+    HDprintf("    %d: Unexpected object type should have been a symbolic link\n", __LINE__);
+   } /* end if */
+
+  char *buf = (char *)HDmalloc(linfo.u.val_size);
+  // if(H5Lget_val(fidin, src_name, linkval, sizeof linkval, H5P_DEFAULT) < 0)
+  if(H5Lget_val(fidin, src_name, buf, linfo.u.val_size, H5P_DEFAULT) >= 0) {
+      HDprintf("    %d: Can't retrieve link value\n", __LINE__);
+   } /* end if */
+  /*
+  printf("linkval = %s\n", linkval);  
+  if((targbuf = (char *)HDmalloc(linfo.u.val_size)) == NULL) {
+    error_msg("unable to allocate buffer\n");
+    h5tools_setstatus(EXIT_FAILURE);
+
+  }
+  */
+  if(H5Lunpack_elink_val(buf, linfo.u.val_size, NULL, &filename, &targname) < 0) {
+    error_msg("unable to unpack external link value\n");
+    h5tools_setstatus(EXIT_FAILURE);
+  } /* end if */
+  else {
+
+    printf("TARGETFILE \"%s\"\n", filename);
+    printf("TARGETNAME \"%s\"\n", targname);
+    hid_t fidin = H5I_INVALID_HID;
+    if((fidin = H5Fopen(filename, H5F_ACC_RDONLY, H5P_DEFAULT)) < 0 ) 
+      printf("H5Fopen failed on <%s>", filename);
+    hid_t dset = H5I_INVALID_HID;        /* dataset ID */    
+    /* Open file and copy dataset. */
+    if((dset = H5Dopen2(fidin, targname, H5P_DEFAULT)) < 0) {
+      printf("H5Dopen2 failed.\n");
+    }
+    
+    hid_t datatype;
+    datatype = H5Dget_type(dset);
+    if (datatype < 0){
+      printf("H5get_type() failed.");      
+    }
+    hid_t ds =  H5Dget_space(dset);
+    hsize_t     dimsm[2];              /* memory space dimensions */
+    dimsm[0] = 10;
+    dimsm[1] = 10;
+    hid_t memspace = H5Screate_simple(2, dimsm, NULL);
+    
+    if(H5Dread(dset, datatype, memspace, ds, H5P_DEFAULT, data_out) < 0)
+      printf("H5Dread failed");
+    
+    hid_t dataset = H5Dcreate2(fidout, targname, datatype, ds,
+			       H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+    
+    /* Write a daset to a file. */
+    if(H5Dwrite(dataset, datatype, H5S_ALL, H5S_ALL, H5P_DEFAULT, data_out) < 0){
+      printf("H5Dwrite() failed.");
+    }
+
+    if(H5Dclose(dset) < 0) {
+      printf("H5Dclose failed.\n");      
+    }
+    
+  }
+}
