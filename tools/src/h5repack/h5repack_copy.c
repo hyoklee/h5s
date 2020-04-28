@@ -1228,13 +1228,13 @@ do_copy_objects(hid_t fidin, hid_t fidout, trav_table_t *travt,
                 if (options->verbose)
                     HDprintf(FORMAT_OBJ, "link", travt->objs[i].name);
 		/* Check X option */
-		printf("Check X option here.\n");
-		/* Read linked data. */
-		H5Lmerge(fidin, travt->objs[i].name, fidout, travt->objs[i].name, H5P_DEFAULT, H5P_DEFAULT);
-		/*
-                if (H5Lcopy(fidin, travt->objs[i].name, fidout, travt->objs[i].name, H5P_DEFAULT, H5P_DEFAULT) < 0)
+		if (options->merge)
+		  /* Read linked data. */
+		  H5Lmerge(fidin, travt->objs[i].name, fidout, travt->objs[i].name, H5P_DEFAULT, H5P_DEFAULT);
+		else
+		  if (H5Lcopy(fidin, travt->objs[i].name, fidout, travt->objs[i].name, H5P_DEFAULT, H5P_DEFAULT) < 0)
                     H5TOOLS_GOTO_ERROR((-1), "H5Lcopy failed");
-		*/
+		
                 break;
 
             default:
