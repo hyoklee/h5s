@@ -21,7 +21,9 @@ b2['ext link'] = h5py.ExternalLink("c.h5", "/dset")
 a = h5py.File('a.h5','w')
 arr_a = np.arange(5)
 dset_a = a.create_dataset("dset", data=arr_a)
-a['ext link1'] = h5py.ExternalLink("b1.h5", "/dset")
-a['ext link2'] = h5py.ExternalLink("b2.h5", "/dset")
+a['ext link1 to link'] = h5py.ExternalLink("b1.h5", "/ext link")
+a['ext link2 to link'] = h5py.ExternalLink("b2.h5", "/ext link")
+a['ext link1 to dset'] = h5py.ExternalLink("b1.h5", "/dset")
+a['ext link2 to dset'] = h5py.ExternalLink("b2.h5", "/dset")
 
 
