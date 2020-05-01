@@ -717,8 +717,19 @@ int parse_command_line(int argc, const char **argv, pack_opt_t* options)
                 break;
 
 	case 'X':
-	  printf("comes here\n");
 	  options->merge = TRUE;
+	  break;
+	  
+	case 'x':
+	  if (!options->merge) {
+	    error_msg("-X option is not specified.\n");
+	    h5tools_setstatus(EXIT_FAILURE);
+	    ret_value = -1;
+	    goto done;
+	  }
+	  else {
+	    options->depth = HDatoi(opt_arg);
+	  }
 	  break;
 	  
             default:
