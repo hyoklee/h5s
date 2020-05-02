@@ -32,7 +32,7 @@ const char *outfile = NULL;
  * Command-line options: The user can specify short or long-named
  * parameters.
  */
-static const char *s_opts = "hVvfXp:l:m:e:nLj:k:c:d:s:u:b:M:t:a:i:o:S:P:T:G:q:z:E:x:";
+static const char *s_opts = "hVvfXpl:m:e:nLj:k:c:d:s:u:b:M:t:a:i:o:S:P:T:G:q:z:E:x:";
 static struct long_options l_opts[] = {
     { "help",                no_arg,      'h' },
     { "version",             no_arg,      'V' },
@@ -732,8 +732,12 @@ int parse_command_line(int argc, const char **argv, pack_opt_t* options)
 	  }
 	  break;
 	  
-            default:
-                break;
+	case 'p':
+	  options->prune = TRUE;
+	  break;
+	  
+	default:
+	  break;
         } /* end switch */
     } /* end while there are more options to parse */
 

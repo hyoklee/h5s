@@ -1241,21 +1241,33 @@ do_copy_objects(hid_t fidin, hid_t fidout, trav_table_t *travt,
 		  } /* end if */
 
 		  /* Read linked data. */
-		  // H5Lmerge(fidin, travt->objs[i].name, fidout, travt->objs[i].name, H5P_DEFAULT, H5P_DEFAULT);
-		  if (H5Ocopy(fidin,
-			      travt->objs[i].name,
-			      fidout,
-			      travt->objs[i].name,
-			      ocpl_id,  
-			      lcpl_id) < 0) 
-		    H5TOOLS_GOTO_ERROR(EXIT_FAILURE, "H5Ocopy failed");
-		}
-		else
-		  if (H5Lcopy(fidin, travt->objs[i].name, fidout,
-			      travt->objs[i].name, H5P_DEFAULT, H5P_DEFAULT)
-		      < 0)
-                    H5TOOLS_GOTO_ERROR((-1), "H5Lcopy failed");
-		
+		  if (options->depth > 0) {
+		    printf("Depth = %d\n", options->depth);
+		    H5Lmerge(fidin, travt->objs[i].name, fidout,
+			     travt->objs[i].name, H5P_DEFAULT, H5P_DEFAULT,
+			     options->depth);		    
+		  }
+		  else {
+		    if (H5Ocopy(fidin,
+				travt->objs[i].name,
+				fidout,
+				travt->objs[i].name,
+				ocpl_id,  
+				lcpl_id) < 0) 
+		      H5TOOLS_GOTO_ERROR(EXIT_FAILURE, "H5Ocopy failed");
+		  }
+		} /* merge */
+		else {
+		  if (options->prune) {
+		    printf("Pruning %s/\n", travt->objs[i].name);
+		  }
+		  else {
+		    if (H5Lcopy(fidin, travt->objs[i].name, fidout,
+				travt->objs[i].name, H5P_DEFAULT, H5P_DEFAULT)
+			< 0)
+		      H5TOOLS_GOTO_ERROR((-1), "H5Lcopy failed");
+		  }
+		} /* copy link */
                 break;
 
             default:
@@ -1556,7 +1568,7 @@ done:
 
 void
 H5Lmerge(hid_t fidin, const char *src_name, hid_t fidout,
-	 const char *dst_name)
+	 const char *dst_name, int d)
 {
   int64_t data_out[10][10];  
   H5L_info2_t linfo;  
