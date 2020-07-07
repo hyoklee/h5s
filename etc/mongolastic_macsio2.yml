@@ -1,0 +1,16 @@
+misc:
+    dindex:
+        name: macsio2
+    ctype:
+        name: macsiooutputs
+    direction: me
+    dropDataset: false
+mongo:
+    host: localhost
+    port: 27017
+elastic:
+    host: 127.0.0.1
+    port: 9300
+
+
+
