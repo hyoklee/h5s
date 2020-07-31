@@ -130,8 +130,8 @@ typedef struct {
     long            fs_threshold;      /* Free space section threshold */
     long long       fs_pagesize;       /* File space page size */
     hbool_t         merge;             /* Merge external file. */
-    int             depth;	       /* Merge depth. */
-    hbool_t         prune;	       /* Don't follow external file. */
+    int             depth;	           /* Merge external file up to a specific depth. */
+    hbool_t         prune;	           /* Don't follow external file. */
 } pack_opt_t;
 
 

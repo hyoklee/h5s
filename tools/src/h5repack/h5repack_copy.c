@@ -1227,7 +1227,7 @@ do_copy_objects(hid_t fidin, hid_t fidout, trav_table_t *travt,
             case H5TRAV_TYPE_UDLINK:
                 if (options->verbose)
                     HDprintf(FORMAT_OBJ, "link", travt->objs[i].name);
-		/* Check X option */
+		/* Check -X option */
 		if (options->merge) {
 		  hid_t        ocpl_id = (-1);
 		  hid_t        lcpl_id = (-1);
@@ -1242,7 +1242,7 @@ do_copy_objects(hid_t fidin, hid_t fidout, trav_table_t *travt,
 
 		  /* Read linked data. */
 		  if (options->depth > 0) {
-		    printf("Depth = %d\n", options->depth);
+		    HDprintf("Depth = %d\n", options->depth);
 		    H5Lmerge(fidin, travt->objs[i].name, fidout,
 			     travt->objs[i].name, H5P_DEFAULT, H5P_DEFAULT,
 			     options->depth);		    
@@ -1605,21 +1605,21 @@ H5Lmerge(hid_t fidin, const char *src_name, hid_t fidout,
   } /* end if */
   else {
 
-    printf("TARGETFILE \"%s\"\n", filename);
-    printf("TARGETNAME \"%s\"\n", targname);
+    HDprintf("TARGETFILE \"%s\"\n", filename);
+    HDprintf("TARGETNAME \"%s\"\n", targname);
     hid_t fidin = H5I_INVALID_HID;
     if((fidin = H5Fopen(filename, H5F_ACC_RDONLY, H5P_DEFAULT)) < 0 ) 
-      printf("H5Fopen failed on <%s>", filename);
+      HDprintf("H5Fopen failed on <%s>", filename);
     hid_t dset = H5I_INVALID_HID;        /* dataset ID */    
     /* Open file and copy dataset. */
     if((dset = H5Dopen2(fidin, targname, H5P_DEFAULT)) < 0) {
-      printf("H5Dopen2 failed.\n");
+      HDprintf("H5Dopen2 failed.\n");
     }
     
     hid_t datatype;
     datatype = H5Dget_type(dset);
     if (datatype < 0){
-      printf("H5get_type() failed.");      
+      HDprintf("H5get_type failed.");      
     }
     hid_t ds =  H5Dget_space(dset);
     hsize_t     dimsm[2];              /* memory space dimensions */
@@ -1628,18 +1628,18 @@ H5Lmerge(hid_t fidin, const char *src_name, hid_t fidout,
     hid_t memspace = H5Screate_simple(2, dimsm, NULL);
     
     if(H5Dread(dset, datatype, memspace, ds, H5P_DEFAULT, data_out) < 0)
-      printf("H5Dread failed");
+      HDprintf("H5Dread failed");
     
     hid_t dataset = H5Dcreate2(fidout, targname, datatype, ds,
 			       H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     
-    /* Write a daset to a file. */
+    /* Write a dataset to a file. */
     if(H5Dwrite(dataset, datatype, H5S_ALL, H5S_ALL, H5P_DEFAULT, data_out) < 0){
-      printf("H5Dwrite() failed.");
+      HDprintf("H5Dwrite failed.");
     }
 
     if(H5Dclose(dset) < 0) {
-      printf("H5Dclose failed.\n");      
+      HDprintf("H5Dclose failed.\n");      
     }
     
   }
