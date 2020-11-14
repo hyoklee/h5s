@@ -13,4 +13,4 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          nene
+          /home/hyoklee/nene
