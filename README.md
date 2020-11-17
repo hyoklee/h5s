@@ -14,6 +14,8 @@
   Test was done on GitHub Actions.
   
 ### Search Performance
+
+ 1PB in 1 sec.
   
 ### Streaming Performance
 
