@@ -10,7 +10,9 @@
   See src/ for affected files.
   
 ## Peformance
-
+  
+  Test was done on GitHub Actions.
+  
 ### Search Performance
   
 ### Streaming Performance
