@@ -10,7 +10,7 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
+        key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: |
           /home/hyoklee/longjob
