@@ -10,6 +10,6 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         user: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
+        key: ${{secrets.KEY}}
         command: |
           /home/hyoklee/longjob
