@@ -13,4 +13,3 @@ jobs:
         key: ${{ secrets.KEY }}
         script: |
           /home/hyoklee/longjob.sh
-	  
