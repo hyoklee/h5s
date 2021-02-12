@@ -1259,7 +1259,7 @@ do_copy_objects(hid_t fidin, hid_t fidout, trav_table_t *travt,
 		} /* merge */
 		else {
 		  if (options->prune) {
-		    printf("Pruning %s/\n", travt->objs[i].name);
+		    HDprintf("Pruning %s/\n", travt->objs[i].name);
 		  }
 		  else {
 		    if (H5Lcopy(fidin, travt->objs[i].name, fidout,
@@ -1628,7 +1628,7 @@ H5Lmerge(hid_t fidin, const char *src_name, hid_t fidout,
     hid_t memspace = H5Screate_simple(2, dimsm, NULL);
     
     if(H5Dread(dset, datatype, memspace, ds, H5P_DEFAULT, data_out) < 0)
-      HDprintf("H5Dread failed");
+      HDprintf("H5Dread failed.");
     
     hid_t dataset = H5Dcreate2(fidout, targname, datatype, ds,
 			       H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
