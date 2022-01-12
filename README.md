@@ -1,4 +1,4 @@
-# HDF 5s
+# h5s
 
   This is an experimental HDF5 library with **s**treaming (e.g., Apache Kafka) and
  **s**earching (e.g., Elastic Search) capability. 
