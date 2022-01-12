@@ -7,6 +7,18 @@
 
 # Usage
 
+## Streaming
+
+### Producer
+
+`bin/h5p`
+
+### Consumer
+
+`bin/h5c`
+
+## Searching
+
 `bin/h5s pattern [directory|file]`
 
 # FAQ
