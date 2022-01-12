@@ -1,9 +1,15 @@
 # HDF 5s
 
-  This is an experimental HDF5 library with streaming (e.g., Apache Kafka) and
- searching (e.g., Elastic Search) capability. 
+  This is an experimental HDF5 library with **s**treaming (e.g., Apache Kafka) and
+ **s**earching (e.g., Elastic Search) capability. 
 
-  This is not free software. Please contact admin@akadio.com if you'd like to buy and try it.
+  This is not free software. Please contact hyoklee@hdfgroup.org if you'd like to buy and try it.
+
+# Usage
+
+`bin/h5s pattern [directory|file]`
+
+# FAQ
 
 ## Patch for g++-8 on Mac
 
