@@ -1,7 +1,7 @@
 # h5s
 
-  This is an experimental HDF5 library with **s**treaming (e.g., Apache Kafka) and
- **s**earching (e.g., Elastic Search) capability. 
+  This is an experimental HDF5 library with enhanced **s**ecurity, **s**treaming (e.g., Apache Kafka) and
+ **s**earching (e.g., Elasticsearch) capability. 
 
   This is not free software. Please contact hyoklee@hdfgroup.org if you'd like to buy and try it.
 
@@ -19,21 +19,21 @@
 
 ## Searching
 
-`bin/h5s pattern [directory|file]`
+`bin/h5s regex [directory|file]`
 
 # FAQ
 
-## Patch for g++-8 on Mac
+## OpenBSD Only
 
-  See src/ for affected files.
+ I don't care other platforms that have too many security holes.
   
-## Peformance
+## Streaming Peformance
   
-  Test was done on GitHub Actions.
+ `pkg_add iperf`
   
 ### Search Performance
 
- 1PB in 1 sec.
+  1PB in 1 sec.
   
 ### Streaming Performance
 
