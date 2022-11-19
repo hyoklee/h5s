@@ -7,6 +7,10 @@
 
 # Usage
 
+## Security
+
+  Run make on OpenBSD 7.2.
+  
 ## Streaming
 
 ### Producer
@@ -23,21 +27,20 @@
 
 # FAQ
 
-## OpenBSD Only
+## Security: OpenBSD Only
 
  I don't care other platforms that have too many security holes.
   
 ## Streaming Peformance
   
  `pkg_add iperf`
-  
-### Search Performance
+ 
+ h5s can use [AWS Timestream](https://aws.amazon.com/timestream/) as backend.
+
+## Search Performance
 
   1PB in 1 sec.
-  
-### Streaming Performance
 
-  h5s can use [AWS Timestream](https://aws.amazon.com/timestream/) as backend.
   
 
   
