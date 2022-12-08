@@ -21,6 +21,11 @@
 
 `bin/h5c`
 
+### Watcher
+
+[![](https://markdown-videos.deta.dev/youtube/qdjAHVON01s)](https://youtu.be/qdjAHVON01s)
+
+
 ## Searching
 
 `bin/h5s regex [directory|file]`
