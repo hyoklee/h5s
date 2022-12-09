@@ -28,7 +28,13 @@
 
 ## Searching
 
-`bin/h5s regex [directory|file]`
+### Grep
+
+`bin/h5s -r regex [directory|file]` 
+
+### SQL
+
+`bin/h5ls -s "SELECT * from [directory|fie]/dset1"`
 
 # FAQ
 
