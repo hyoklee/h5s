@@ -34,7 +34,7 @@
 
 ### SQL
 
-`bin/h5ls -s "SELECT * from [directory|fie]/dset1"`
+`bin/h5s -s "SELECT * from [directory|fie]/dset1"`
 
 # FAQ
 
