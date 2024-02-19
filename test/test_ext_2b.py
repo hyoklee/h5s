@@ -17,7 +17,7 @@ arr = np.arange(50)
 dset = b2.create_dataset("dset", data=arr)
 b2['ext link'] = h5py.ExternalLink("c.h5", "/dset")
 
-# 1 Mastger
+# 1 Master
 a = h5py.File('a.h5','w')
 arr_a = np.arange(5)
 dset_a = a.create_dataset("dset", data=arr_a)
