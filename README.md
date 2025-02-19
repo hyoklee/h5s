@@ -9,7 +9,7 @@
 
 ## Security
 
-  Run `make` on OpenBSD 7.5.
+  Run `make` on OpenBSD 7.6.
   
 ## Streaming
 
