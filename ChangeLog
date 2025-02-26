@@ -1,3 +1,7 @@
+2024-04-18 Hyo-Kyung Lee  <hyoklee@hdfgroup.org>
+
+	* test: removed codes.
+
 2019-10-16  Hyo-Kyung Lee  <hyoklee@hdfgroup.org>
 
 	* test/pymysql_cdash.py: added.
