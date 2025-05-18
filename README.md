@@ -1,8 +1,9 @@
 # h5s
 
-  This is an experimental HDF5 library with enhanced **s**ecurity,
-  **s**treaming (e.g., Apache Kafka), and **s**earching
-  (e.g., Elasticsearch) capability. 
+  This is an experimental HDF5 library with
+  **s**ecurity (e.g., OpenSSH),
+  **s**treaming (e.g., Apache Kafka), and
+  **s**earching (e.g., Elasticsearch) capability. 
 
   This is not free software.
   Please contact hyoklee@hdfgroup.org if you'd like to buy and try it.
@@ -11,7 +12,7 @@
 
 ## Security
 
-  Run `make` on OpenBSD 7.6.
+  Run `make` on OpenBSD 7.7.
   
 ## Streaming
 
@@ -29,6 +30,10 @@
 
 
 ## Searching
+
+### AI
+
+`bin/h5p -p "List all groups."`
 
 ### Grep
 
