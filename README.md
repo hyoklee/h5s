@@ -18,11 +18,11 @@
 
 ### Producer
 
-`bin/h5p`
+`h5s -p`
 
 ### Consumer
 
-`bin/h5c`
+`h5s -c`
 
 ### Watcher
 
@@ -33,15 +33,15 @@
 
 ### AI
 
-`bin/h5p -p "List all groups."`
+`h5s -a "List all groups."`
 
 ### Grep
 
-`bin/h5s -r regex [directory|file]` 
+`h5s -r regex [directory|file]` 
 
 ### SQL
 
-`bin/h5s -s "SELECT * from [directory|fie]/dset1"`
+`h5s -s "SELECT * from [directory|fie]/dset1"`
 
 # FAQ
 
