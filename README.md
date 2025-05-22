@@ -6,7 +6,7 @@
   **s**earching (e.g., Elasticsearch) capability. 
 
   This is not free software.
-  Please contact hyoklee@hdfgroup.org if you'd like to buy and try it.
+  Please contact hyoklee@hdfgroup.org if you'd like to buy it.
 
 # Usage
 
@@ -45,9 +45,9 @@
 
 # FAQ
 
-## Security: OpenBSD Only
+## Security
 
- I don't care other platforms that have too many security holes.
+  h5s runs on OpenBSD only.
   
 ## Streaming Peformance
   
