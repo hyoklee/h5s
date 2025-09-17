@@ -2,7 +2,7 @@
 # Compatible with OpenBSD make
 
 # Use gcc by default on OpenBSD
-CC = gcc
+CC = cc
 CFLAGS = -std=c99 -Wall
 
 # Default target
