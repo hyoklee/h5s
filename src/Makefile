@@ -14,16 +14,16 @@ w: w.c
 r: r.c
 	$(CC) $(CFLAGS) -o r r.c
 
-v: ../v.c
-	$(CC) $(CFLAGS) -o v ../v.c
+v: v.c
+	$(CC) $(CFLAGS) -o v v.c
 
-h: ../h.c
-	$(CC) $(CFLAGS) -o h ../h.c
+h: h.c
+	$(CC) $(CFLAGS) -o h h.c
 
 # Test target - runs the complete test suite
 test: build
-	@echo "=== H5S Test Suite ==="
-	@echo "Testing H5S writer..."
+	@echo "=== h5s test ==="
+	@echo "Testing h5s writer..."
 	./w
 	@echo ""
 	@test -f test.h5 || { echo "ERROR: test.h5 file was not created!"; exit 1; }
@@ -32,7 +32,7 @@ test: build
 	@echo "Testing with validation tool..."
 	./v test.h5
 	@echo ""
-	@echo "Testing H5S reader..."
+	@echo "Testing h5s reader..."
 	./r test.h5
 	@echo ""
 	@echo "Creating hex dump for verification..."
@@ -41,7 +41,7 @@ test: build
 	@if command -v h5dump >/dev/null 2>&1; then \
 		echo "Testing with official h5dump..."; \
 		h5dump test.h5 || { \
-			echo "h5dump failed, but this might be expected for our minimal implementation"; \
+			echo "h5dump failed, but this might be expected for minimal implementation"; \
 			echo "Continuing with other tests..."; \
 		}; \
 	else \
@@ -54,16 +54,14 @@ test: build
 clean:
 	rm -f w r v h test.h5
 
-# Install dependencies (for reference - actual installation varies by OS)
+# Install dependencies
 install-deps:
 	@echo "Installing dependencies..."
-	@echo "On OpenBSD: sudo pkg_add gcc hdf5"
-	@echo "On Ubuntu: sudo apt-get install gcc libhdf5-dev hdf5-tools"
-	@echo "On macOS: brew install gcc hdf5"
+	@echo "sudo pkg_add hdf5"
 
 # Help target
 help:
-	@echo "H5S Makefile targets:"
+	@echo "h5s Makefile targets:"
 	@echo "  all/build  - Build all components"
 	@echo "  w          - Build writer only"
 	@echo "  r          - Build reader only"
