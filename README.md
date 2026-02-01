@@ -43,7 +43,7 @@
 
 ### SQL
 
-`h5s -s "SELECT * from [directory|file]/dset1"`
+`h5s -q "SELECT * from [directory|file]/dset1"`
 
 
 # FAQ
